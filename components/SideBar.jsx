@@ -14,8 +14,8 @@ function SideBar() {
   };
   return (
     <>
-      <aside className="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
-        <div className="py-4 text-gray-500 dark:text-gray-400">
+      <aside className="z-20  w-64 overflow-y-auto bg-gray-800 block flex-shrink-0">
+        <div className="py-4 text-gray-400">
           <Link href="/dashboard">
             <a className="flex justify-center py-7">
               <Image src={logo} width={160} height={80} alt="Logo"></Image>
@@ -34,7 +34,7 @@ function SideBar() {
           <ul>
             <li className="relative px-6 py-3">
               <Link href="/mentee">
-                <a className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150  hover:text-gray-200" href="forms.html">
+                <a className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150  hover:text-gray-200">
                   <TrophyIcon className="w-5 h-5" />
                   <span className="ml-4">Mentee</span>
                 </a>
@@ -42,7 +42,7 @@ function SideBar() {
             </li>
             <li className="relative px-6 py-3">
               <Link href="/users">
-                <a className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150  hover:text-gray-200" href="cards.html">
+                <a className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150  hover:text-gray-200">
                   <UsersIcon className="w-5 h-5" />
                   <span className="ml-4">User</span>
                 </a>
@@ -50,7 +50,7 @@ function SideBar() {
             </li>
             <li className="relative px-6 py-3">
               <Link href="/class">
-                <a className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150  hover:text-gray-200" href="charts.html">
+                <a className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150  hover:text-gray-200">
                   <PresentationChartLineIcon className="w-5 h-5" />
                   <span className="ml-4">Class</span>
                 </a>
