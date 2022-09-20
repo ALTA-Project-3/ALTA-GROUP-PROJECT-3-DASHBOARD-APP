@@ -6,12 +6,11 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import cookie from "js-cookie";
 
-export default function Home({ token }) {
+export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
-  // const [token, setToken] = useState(localStorage.getItem("userToken") ?? null);
 
   const loginHandler = async () => {
     setError("");
@@ -86,8 +85,4 @@ export default function Home({ token }) {
       </div>
     </div>
   );
-}
-
-export function getServerSideProps({ req, res }) {
-  return { props: { token: req.cookies.token || "" } };
 }
