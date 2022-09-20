@@ -45,8 +45,8 @@ export default function Home({ token }) {
     <div className="flex items-center min-h-screen p-6 bg-gray-900">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden  rounded-lg shadow-xl bg-gray-800">
         <div className="flex flex-col overflow-y-auto md:flex-row">
-          <div className="h-32 md:h-auto md:w-1/2">
-            <Image aria-hidden="true" className="object-cover w-full h-full block" src={office} alt="Office" layout="responsive" />
+          <div className="h-56 md:h-[600px] md:w-1/2 relative">
+            <Image aria-hidden="true" className="object-cover w-full h-full block" src={office} alt="Office" layout="fill" />
           </div>
           <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <form className="w-full" onSubmit={(e) => submit(e)}>
