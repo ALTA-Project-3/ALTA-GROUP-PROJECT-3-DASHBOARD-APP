@@ -46,7 +46,7 @@ export default function Home({ token }) {
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden  rounded-lg shadow-xl bg-gray-800">
         <div className="flex flex-col overflow-y-auto md:flex-row">
           <div className="h-32 md:h-auto md:w-1/2">
-            <Image aria-hidden="true" className="hidden object-cover w-full h-full dark:block" src={office} alt="Office" layout="responsive" objectFit="cover" />
+            <Image aria-hidden="true" className="object-cover w-full h-full block" src={office} alt="Office" layout="responsive" />
           </div>
           <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <form className="w-full" onSubmit={(e) => submit(e)}>
@@ -54,7 +54,7 @@ export default function Home({ token }) {
               <label className="block text-sm">
                 <span className="text-gray-400">Email</span>
                 <input
-                  className="block w-full mt-1 px-4 py-2 rounded-lg text-sm border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple text-gray-300 focus:shadow-outline-gray"
+                  className="block w-full mt-1 px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray"
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -63,7 +63,7 @@ export default function Home({ token }) {
               <label className="block mt-4 text-sm">
                 <span className="text-gray-400">Password</span>
                 <input
-                  className="block w-full mt-1 px-4 py-2 rounded-lg text-sm border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple text-gray-300 focus:shadow-outline-gray"
+                  className="block w-full mt-1 px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray"
                   placeholder="Password"
                   type="password"
                   value={password}
