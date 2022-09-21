@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
 import {
@@ -7,28 +7,58 @@ import {
   DocumentTextIcon,
 } from "@heroicons/react/24/outline";
 import axios from "axios";
-
+import { Line } from "react-chartjs-2";
+import Chart from "chart.js/auto";
 
 export default function Dashboard() {
   const [total, setTotal] = useState([]);
 
   const getTotal = () => {
-    axios .get('https://virtserver.swaggerhub.com/nawihusen/groupproject3/1.0.0/user/profile')
-    .then((response) => {
-      console.log("ini response", response.data);
-      setTotal(response.data)
-    })
+    axios
+      .get(
+        "https://virtserver.swaggerhub.com/nawihusen/groupproject3/1.0.0/user/profile"
+      )
+      .then((response) => {
+        console.log("ini response", response.data);
+        setTotal(response.data);
+      })
 
-    .catch((error) => {
-      console.log(error)
-    })
-  }
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
-    getTotal()
-  }, []) 
+    getTotal();
+  }, []);
 
-
+  const data = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    datasets: [
+      {
+        label: "Placement",
+        data: [33, 53, 85, 41, 44, 65],
+        fill: true,
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)",
+        tension: 0.3,
+      },
+      {
+        label: "Graduate",
+        data: [33, 25, 35, 51, 54, 76],
+        fill: true,
+        borderColor: "#742774",
+        tension: 0.3,
+      },
+      {
+        label: "Register",
+        data: [29, 27, 20, 42, 55, 45],
+        fill: true,
+        borderColor: "#5357D4",
+        tension: 0.3,
+      },
+    ],
+  };
 
   return (
     <>
@@ -80,31 +110,11 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-          <div
-                className="min-w-0 mx-14 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
-              >
-                <h4 className="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                  Register
-                </h4>
-                <canvas id="line"></canvas>
-                <div
-                  className="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
-                >
-                  {/* <!-- Chart legend --> */}
-                  <div className="flex items-center">
-                    <span
-                      className="inline-block w-3 h-3 mr-1 bg-teal-500 rounded-full"
-                    ></span>
-                    <span>Graduates</span>
-                  </div>
-                  <div className="flex items-center">
-                    <span
-                      className="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
-                    ></span>
-                    <span>Placement</span>
-                  </div>
-                </div>
-              </div>
+          <div className="min-w-0 mx-14 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div className="App">
+              <Line data={data} width={50} height={13} />
+            </div>
+          </div>
         </div>
       </div>
     </>
