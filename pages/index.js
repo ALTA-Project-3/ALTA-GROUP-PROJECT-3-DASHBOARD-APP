@@ -17,16 +17,16 @@ export default function Home() {
     setEmail("");
     setPassword("");
     await axios({
-      url: "https://virtserver.swaggerhub.com/nawihusen/groupproject3/1.0.0/login",
+      url: "https://tugas.website/login",
       method: "POST",
-      withCredentials: true,
       data: {
         email,
         password,
       },
     })
       .then((res) => {
-        cookie.set("JWT", res.data.data.token);
+        console.log(res.data.data);
+        cookie.set("JWT", res.data.data);
       })
       .catch((err) => {
         console.log(err);
