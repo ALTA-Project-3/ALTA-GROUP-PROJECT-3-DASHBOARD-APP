@@ -9,11 +9,9 @@ import cookie from "js-cookie";
 export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const router = useRouter();
 
   const loginHandler = async () => {
-    setError("");
     setEmail("");
     setPassword("");
     await axios({
@@ -25,15 +23,13 @@ export default function Home() {
       },
     })
       .then((res) => {
-        console.log(res.data.data);
-        cookie.set("JWT", res.data.data);
+        cookie.set("token", res.data.data);
+        router.push("/dashboard");
       })
       .catch((err) => {
         console.log(err);
-        setError(err);
+        alert(err.message);
       });
-
-    await router.push("/dashboard");
   };
 
   const submit = (e) => {
@@ -69,9 +65,6 @@ export default function Home() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
-
-              {error ?? <small className="flex justify-center text-red-600">{error}</small>}
-
               <button
                 type="submit"
                 className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"

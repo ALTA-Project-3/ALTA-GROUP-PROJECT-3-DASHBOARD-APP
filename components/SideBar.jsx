@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 function SideBar() {
   const router = useRouter();
   const handleLogout = async () => {
-    await cookie.remove("JWT");
+    await cookie.remove("token");
     await router.push("/");
   };
   return (
