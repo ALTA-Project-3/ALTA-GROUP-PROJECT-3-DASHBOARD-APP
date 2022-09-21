@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import React from "react";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 function Header() {
