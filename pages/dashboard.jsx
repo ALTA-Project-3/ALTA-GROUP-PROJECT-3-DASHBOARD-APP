@@ -1,9 +1,10 @@
+import { BriefcaseIcon, DocumentTextIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+import axios from "axios";
+import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
-import { UserGroupIcon, BriefcaseIcon, DocumentTextIcon } from "@heroicons/react/24/outline";
-import axios from "axios";
-import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 
 export default function Dashboard() {
@@ -11,10 +12,12 @@ export default function Dashboard() {
 
   const getTotal = () => {
     axios
-      .get("https://virtserver.swaggerhub.com/nawihusen/groupproject3/1.0.0/user/profile")
+      .get("https://tugas.website/user/profile", {
+        headers: { Authorization: "Bearer " + Cookies.get("token") },
+      })
       .then((response) => {
-        console.log("ini response", response.data);
-        setTotal(response.data);
+        console.log("ini response", response.data.data);
+        setTotal(response.data.data);
       })
 
       .catch((error) => {
@@ -70,7 +73,7 @@ export default function Dashboard() {
               </div>
               <div>
                 <p className="mb-2 text-base font-medium text-gray-600 dark:text-gray-400">Mentee Active</p>
-                <p className="text-6xl text-center font-bold text-gray-700 dark:text-gray-200">{total.Menteeactive}</p>
+                <p className="text-6xl text-center font-bold text-gray-700 dark:text-gray-200">{total.menteeActive}</p>
               </div>
             </div>
             {/* <!-- Card --> */}
@@ -80,7 +83,7 @@ export default function Dashboard() {
               </div>
               <div>
                 <p className="mb-2 text-base font-medium text-gray-600 dark:text-gray-400">Mentee Placement</p>
-                <p className="text-6xl text-center font-bold text-gray-700 dark:text-gray-200">{total.MenteePlacement}</p>
+                <p className="text-6xl text-center font-bold text-gray-700 dark:text-gray-200">{total.menteePlacement}</p>
               </div>
             </div>
             {/* <!-- Card --> */}
@@ -90,7 +93,7 @@ export default function Dashboard() {
               </div>
               <div>
                 <p className="mb-2 text-base font-medium text-gray-600 dark:text-gray-400">Mentor Feedback</p>
-                <p className="text-6xl text-center font-bold text-gray-700 dark:text-gray-200">{total.MenteeFeedback}</p>
+                <p className="text-6xl text-center font-bold text-gray-700 dark:text-gray-200">{total.menteeFeedback}</p>
               </div>
             </div>
           </div>
