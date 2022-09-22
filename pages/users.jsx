@@ -43,20 +43,21 @@ export default function Users() {
       .post(
         "https://tugas.website/admin",
         {
-          fullName: fullName,
-          email: email,
-          team: team,
-          status: status,
-          role: role,
-          password: password,
+          fullName,
+          email,
+          team,
+          status,
+          role,
+          password,
         },
         {
           headers: { Authorization: "Bearer " + Cookies.get("token") },
         }
       )
       .then((response) => {
-        console.log(response);
         setShowModal(false);
+        alert(response.data.message);
+        getUsers();
       })
       .catch((err) => {
         alert(err.message);
@@ -71,7 +72,8 @@ export default function Users() {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        getUsers();
+        alert(response.data.message);
       })
       .catch((err) => {
         console.log(err.message);
@@ -124,7 +126,7 @@ export default function Users() {
                             <tr className="text-gray-400" key={user.id}>
                               <td className="px-4 py-3 text-center">
                                 <div className="flex items-center text-sm">
-                                  <p className="font-semibold">{user.fullname}</p>
+                                  <p className="font-semibold capitalize">{user.fullname}</p>
                                 </div>
                               </td>
                               <td className="px-4 py-3 text-center text-sm">{user.email}</td>
@@ -135,7 +137,7 @@ export default function Users() {
                                   <span className="px-2 py-1 font-semibold leading-tight rounded-full bg-green-700 text-green-100">{user.status}</span>
                                 ) : user.status === "Not-Active" ? (
                                   <span className="px-2 py-1 font-semibold leading-tight rounded-full bg-orange-700 text-green-100">{user.status}</span>
-                                ) : user.status === "deleted" ? (
+                                ) : user.status === "Deleted" ? (
                                   <span className="px-2 py-1 font-semibold leading-tight rounded-full bg-red-700 text-green-100">{user.status}</span>
                                 ) : null}
                               </td>

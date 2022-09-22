@@ -65,9 +65,9 @@ export default function Dashboard() {
         <SideBar />
         <div className="w-screen">
           <Header />
-          <div className="grid gap-20 mb-8 mt-12 mx-14 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid md:gap-20 gap-3 mb-8 mt-12 mx-14 md:grid-cols-2 xl:grid-cols-3">
             {/* <!-- Card --> */}
-            <div className="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div className="flex items-center justify-start p-4  bg-white rounded-lg shadow-xs dark:bg-gray-800">
               <div className="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
                 <UserGroupIcon className="w-5 h-5" stroke="currentColor" />
               </div>
