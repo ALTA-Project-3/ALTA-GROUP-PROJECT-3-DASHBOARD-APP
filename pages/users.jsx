@@ -5,18 +5,22 @@ import { PencilSquareIcon, TrashIcon, ChevronDoubleLeftIcon, ChevronDoubleRightI
 import axios from "axios";
 import Cookies from "js-cookie";
 import Modal from "../components/Modal";
+import ModalEditUser from "../components/ModalEditUser";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [team, setTeam] = useState("");
   const [role, setRole] = useState("");
   const [status, setStatus] = useState("");
   const [password, setPassword] = useState("");
+  const [userId, setUserId] = useState(0);
   const [showAlertDeleted, setShowAlertDeleted] = useState(false);
   const [showAlertCreated, setShowAlertCreated] = useState(false);
+  const [showAlertEdited, setShowAlertEdited] = useState(false);
 
   const getUsers = () => {
     axios
@@ -59,7 +63,7 @@ export default function Users() {
       .then((response) => {
         setShowModal(false);
         setShowAlertCreated(true);
-        setTimeout(() => setShowAlertCreated(false), 1000);
+        setTimeout(() => setShowAlertCreated(false), 2000);
         getUsers();
       })
       .catch((err) => {
@@ -77,10 +81,44 @@ export default function Users() {
       .then((response) => {
         getUsers();
         setShowAlertDeleted(true);
-        setTimeout(() => setShowAlertDeleted(false), 1000);
+        setTimeout(() => setShowAlertDeleted(false), 2000);
       })
       .catch((err) => {
         console.log(err.message);
+      });
+  };
+
+  const handleEditUser = (id) => {
+    setFullName("");
+    setEmail("");
+    setTeam("");
+    setRole("");
+    setStatus("");
+    setPassword("");
+    axios
+      .put(
+        "https://tugas.website/users",
+        {
+          id: id,
+          fullName,
+          email,
+          team,
+          status,
+          role,
+          password,
+        },
+        {
+          headers: { Authorization: "Bearer " + Cookies.get("token") },
+        }
+      )
+      .then((response) => {
+        setShowModalEdit(false);
+        setShowAlertEdited(true);
+        setTimeout(() => setShowAlertEdited(false), 2000);
+        getUsers();
+      })
+      .catch((err) => {
+        alert(err.message);
       });
   };
 
@@ -98,7 +136,7 @@ export default function Users() {
                     <BellAlertIcon className="fas fa-bell" />
                   </span>
                   <span className="inline-block align-middle mr-8">
-                    <b className="capitalize">Class Successfully Deleted</b>
+                    <b className="capitalize">User Successfully Deleted</b>
                   </span>
                   <button className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onClick={() => setShowAlertDeleted(false)}>
                     <span>×</span>
@@ -111,7 +149,20 @@ export default function Users() {
                     <BellAlertIcon className="fas fa-bell" />
                   </span>
                   <span className="inline-block align-middle mr-8">
-                    <b className="capitalize">Class Successfully Created</b>
+                    <b className="capitalize">User Successfully Created</b>
+                  </span>
+                  <button className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onClick={() => setShowAlertCreated(false)}>
+                    <span>×</span>
+                  </button>
+                </div>
+              ) : null}
+              {showAlertEdited ? (
+                <div className={"text-white px-6 py-4 mt-14 border-0 rounded relative  bg-blue-500"}>
+                  <span className="text-xl inline-block mr-5 align-middle">
+                    <BellAlertIcon className="fas fa-bell" />
+                  </span>
+                  <span className="inline-block align-middle mr-8">
+                    <b className="capitalize">User Successfully Edited</b>
                   </span>
                   <button className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onClick={() => setShowAlertCreated(false)}>
                     <span>×</span>
@@ -150,7 +201,7 @@ export default function Users() {
                       </tr>
                     </thead>
                     <tbody className=" divide-y divide-gray-700 bg-gray-800">
-                      {users.map((user) => {
+                      {users.slice(0, 5).map((user) => {
                         return (
                           <>
                             <tr className="text-gray-400" key={user.id}>
@@ -173,7 +224,13 @@ export default function Users() {
                               </td>
                               <td className="px-4 py-3 text-center">
                                 <div className="flex items-center justify-center space-x-4 text-sm">
-                                  <button className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5  rounded-lg text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Edit">
+                                  <button
+                                    className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5  rounded-lg text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                    aria-label="Edit"
+                                    onClick={() => {
+                                      setShowModalEdit(true), setUserId(user.id);
+                                    }}
+                                  >
                                     <PencilSquareIcon className="w-5 h-5" />
                                   </button>
                                   <button
@@ -221,6 +278,24 @@ export default function Users() {
           setPassword={(e) => setPassword(e.target.value)}
           handleAddNewUser={handleAddNewUser}
           setShowModal={() => setShowModal(false)}
+        />
+      ) : null}
+      {showModalEdit ? (
+        <ModalEditUser
+          fullName={fullName}
+          setFullName={(e) => setFullName(e.target.value)}
+          email={email}
+          setEmail={(e) => setEmail(e.target.value)}
+          team={team}
+          setTeam={(e) => setTeam(e.target.value)}
+          role={role}
+          setRole={(e) => setRole(e.target.value)}
+          status={status}
+          setStatus={(e) => setStatus(e.target.value)}
+          password={password}
+          setPassword={(e) => setPassword(e.target.value)}
+          handleEditUser={() => handleEditUser(userId)}
+          setShowModalEdit={() => setShowModalEdit(false)}
         />
       ) : null}
     </>
