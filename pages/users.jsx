@@ -201,7 +201,7 @@ export default function Users() {
                       </tr>
                     </thead>
                     <tbody className=" divide-y divide-gray-700 bg-gray-800">
-                      {users.slice(0, 5).map((user) => {
+                      {users.map((user) => {
                         return (
                           <>
                             <tr className="text-gray-400" key={user.id}>

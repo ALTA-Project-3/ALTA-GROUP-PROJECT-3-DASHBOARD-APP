@@ -11,8 +11,8 @@ function Class() {
   const [className, setClassName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [showAlertDeleted, setShowAlertDeleted] = useState(true);
-  const [showAlertCreated, setShowAlertCreated] = useState(true);
+  const [showAlertDeleted, setShowAlertDeleted] = useState(false);
+  const [showAlertCreated, setShowAlertCreated] = useState(false);
 
   const getClassName = () => {
     axios
@@ -53,7 +53,7 @@ function Class() {
         setShowModal(false);
         getClassName();
         setShowAlertCreated(true);
-        setTimeout(() => setShowAlertCreated(false), 1000);
+        setTimeout(() => setShowAlertCreated(false), 2000);
       })
       .catch((err) => {
         alert(err.message);
@@ -70,7 +70,7 @@ function Class() {
       .then((response) => {
         getClassName();
         setShowAlertDeleted(true);
-        setTimeout(() => setShowAlertDeleted(false), 1000);
+        setTimeout(() => setShowAlertDeleted(false), 2000);
       })
       .catch((err) => {
         console.log(err.message);
@@ -87,7 +87,7 @@ function Class() {
             {showAlertDeleted ? (
               <div className={"text-white px-6 py-4 mt-14 border-0 rounded relative  bg-red-500"}>
                 <span className="text-xl inline-block mr-5 align-middle">
-                  <BellAlertIcon className="fas fa-bell" />
+                  <BellAlertIcon className="text-white" />
                 </span>
                 <span className="inline-block align-middle mr-8">
                   <b className="capitalize">Class Successfully Deleted</b>
@@ -100,7 +100,7 @@ function Class() {
             {showAlertCreated ? (
               <div className={"text-white px-6 py-4 mt-14 border-0 rounded relative  bg-green-500"}>
                 <span className="text-xl inline-block mr-5 align-middle">
-                  <BellAlertIcon className="fas fa-bell" />
+                  <BellAlertIcon className="text-white" />
                 </span>
                 <span className="inline-block align-middle mr-8">
                   <b className="capitalize">Class Successfully Created</b>
