@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
-import {
-  UserGroupIcon,
-  BriefcaseIcon,
-  DocumentTextIcon,
-} from "@heroicons/react/24/outline";
+import { UserGroupIcon, BriefcaseIcon, DocumentTextIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
@@ -15,9 +11,7 @@ export default function Dashboard() {
 
   const getTotal = () => {
     axios
-      .get(
-        "https://virtserver.swaggerhub.com/nawihusen/groupproject3/1.0.0/user/profile"
-      )
+      .get("https://virtserver.swaggerhub.com/nawihusen/groupproject3/1.0.0/user/profile")
       .then((response) => {
         console.log("ini response", response.data);
         setTotal(response.data);
@@ -47,13 +41,15 @@ export default function Dashboard() {
         label: "Graduate",
         data: [33, 25, 35, 51, 54, 76],
         fill: true,
-        borderColor: "#742774",
+        backgroundColor: "rgba(116,39,116,0.2)",
+        borderColor: "rgba(116,39,116,1)",
         tension: 0.3,
       },
       {
         label: "Register",
         data: [29, 27, 20, 42, 55, 45],
         fill: true,
+        backgroundColor: "rgba(83,87,212,0.2)",
         borderColor: "#5357D4",
         tension: 0.3,
       },
@@ -73,12 +69,8 @@ export default function Dashboard() {
                 <UserGroupIcon className="w-5 h-5" stroke="currentColor" />
               </div>
               <div>
-                <p className="mb-2 text-base font-medium text-gray-600 dark:text-gray-400">
-                  Mentee Active
-                </p>
-                <p className="text-6xl text-center font-bold text-gray-700 dark:text-gray-200">
-                  {total.Menteeactive}
-                </p>
+                <p className="mb-2 text-base font-medium text-gray-600 dark:text-gray-400">Mentee Active</p>
+                <p className="text-6xl text-center font-bold text-gray-700 dark:text-gray-200">{total.Menteeactive}</p>
               </div>
             </div>
             {/* <!-- Card --> */}
@@ -87,12 +79,8 @@ export default function Dashboard() {
                 <BriefcaseIcon className="w-5 h-5" stroke="currentColor" />
               </div>
               <div>
-                <p className="mb-2 text-base font-medium text-gray-600 dark:text-gray-400">
-                  Mentee Placement
-                </p>
-                <p className="text-6xl text-center font-bold text-gray-700 dark:text-gray-200">
-                  {total.MenteePlacement}
-                </p>
+                <p className="mb-2 text-base font-medium text-gray-600 dark:text-gray-400">Mentee Placement</p>
+                <p className="text-6xl text-center font-bold text-gray-700 dark:text-gray-200">{total.MenteePlacement}</p>
               </div>
             </div>
             {/* <!-- Card --> */}
@@ -101,12 +89,8 @@ export default function Dashboard() {
                 <DocumentTextIcon className="w-5 h-5" stroke="currentColor" />
               </div>
               <div>
-                <p className="mb-2 text-base font-medium text-gray-600 dark:text-gray-400">
-                  Mentor Feedback
-                </p>
-                <p className="text-6xl text-center font-bold text-gray-700 dark:text-gray-200">
-                  {total.MenteeFeedback}
-                </p>
+                <p className="mb-2 text-base font-medium text-gray-600 dark:text-gray-400">Mentor Feedback</p>
+                <p className="text-6xl text-center font-bold text-gray-700 dark:text-gray-200">{total.MenteeFeedback}</p>
               </div>
             </div>
           </div>
