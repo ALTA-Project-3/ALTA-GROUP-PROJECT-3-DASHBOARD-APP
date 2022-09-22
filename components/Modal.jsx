@@ -19,11 +19,25 @@ function Modal({ fullName, setFullName, email, setEmail, team, setTeam, role, se
                 <label>Email</label>
                 <input className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray" value={email} onChange={setEmail} />
                 <label>Team</label>
-                <input className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray" value={team} onChange={setTeam} />
+                <select className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray" value={team} onChange={setTeam}>
+                  <option value="">Select Team</option>
+                  <option value="Academic">Academic</option>
+                  <option value="Placement">Placement</option>
+                  <option value="People">People</option>
+                  <option value="Admission">Admission</option>
+                </select>
                 <label>Role</label>
-                <input className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray" value={role} onChange={setRole} />
+                <select className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray" value={role} onChange={setRole}>
+                  <option value="">Select Role</option>
+                  <option value="Default">Default</option>
+                  <option value="Admin">Admin</option>
+                </select>
                 <label>Status</label>
-                <input className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray" value={status} onChange={setStatus} />
+                <select className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray" value={status} onChange={setStatus}>
+                  <option value="">Select Status</option>
+                  <option value="Active">Active</option>
+                  <option value="Not-Active">Not-Active</option>
+                </select>
                 <label>Password</label>
                 <input className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray" value={password} onChange={setPassword} />
               </form>

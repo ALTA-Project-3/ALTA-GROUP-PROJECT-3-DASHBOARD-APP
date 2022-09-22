@@ -42,7 +42,7 @@ export default function Dashboard() {
       },
       {
         label: "Graduate",
-        data: [33, 25, 35, 51, 54, 76],
+        data: [50, 25, 35, 51, 54, 76],
         fill: true,
         backgroundColor: "rgba(116,39,116,0.2)",
         borderColor: "rgba(116,39,116,1)",

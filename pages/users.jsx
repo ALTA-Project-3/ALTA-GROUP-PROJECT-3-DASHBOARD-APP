@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
-import { PencilSquareIcon, TrashIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from "@heroicons/react/24/solid";
+import { PencilSquareIcon, TrashIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon, BellAlertIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Modal from "../components/Modal";
@@ -15,6 +15,8 @@ export default function Users() {
   const [role, setRole] = useState("");
   const [status, setStatus] = useState("");
   const [password, setPassword] = useState("");
+  const [showAlertDeleted, setShowAlertDeleted] = useState(false);
+  const [showAlertCreated, setShowAlertCreated] = useState(false);
 
   const getUsers = () => {
     axios
@@ -56,7 +58,8 @@ export default function Users() {
       )
       .then((response) => {
         setShowModal(false);
-        alert(response.data.message);
+        setShowAlertCreated(true);
+        setTimeout(() => setShowAlertCreated(false), 1000);
         getUsers();
       })
       .catch((err) => {
@@ -73,7 +76,8 @@ export default function Users() {
       })
       .then((response) => {
         getUsers();
-        alert(response.data.message);
+        setShowAlertDeleted(true);
+        setTimeout(() => setShowAlertDeleted(false), 1000);
       })
       .catch((err) => {
         console.log(err.message);
@@ -88,6 +92,32 @@ export default function Users() {
           <Header />
           <main className="h-full pb-16 overflow-y-auto">
             <div className="container grid px-6 py-10 mx-auto">
+              {showAlertDeleted ? (
+                <div className={"text-white px-6 py-4 mt-14 border-0 rounded relative  bg-red-500"}>
+                  <span className="text-xl inline-block mr-5 align-middle">
+                    <BellAlertIcon className="fas fa-bell" />
+                  </span>
+                  <span className="inline-block align-middle mr-8">
+                    <b className="capitalize">Class Successfully Deleted</b>
+                  </span>
+                  <button className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onClick={() => setShowAlertDeleted(false)}>
+                    <span>×</span>
+                  </button>
+                </div>
+              ) : null}
+              {showAlertCreated ? (
+                <div className={"text-white px-6 py-4 mt-14 border-0 rounded relative  bg-green-500"}>
+                  <span className="text-xl inline-block mr-5 align-middle">
+                    <BellAlertIcon className="fas fa-bell" />
+                  </span>
+                  <span className="inline-block align-middle mr-8">
+                    <b className="capitalize">Class Successfully Created</b>
+                  </span>
+                  <button className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onClick={() => setShowAlertCreated(false)}>
+                    <span>×</span>
+                  </button>
+                </div>
+              ) : null}
               <label className="block mt-4 text-sm mb-4">
                 <div className=" text-gray-500 focus-within:text-purple-600 flex justify-end">
                   <input
@@ -131,7 +161,7 @@ export default function Users() {
                               </td>
                               <td className="px-4 py-3 text-center text-sm">{user.email}</td>
                               <td className="px-4 py-3 text-center text-sm">{user.team}</td>
-                              <td className="px-4 py-3 text-center text-sm">{user.role}</td>
+                              <td className="px-4 py-3 text-center text-sm capitalize">{user.role}</td>
                               <td className="px-4 py-3 text-center text-xs">
                                 {user.status === "Active" ? (
                                   <span className="px-2 py-1 font-semibold leading-tight rounded-full bg-green-700 text-green-100">{user.status}</span>
