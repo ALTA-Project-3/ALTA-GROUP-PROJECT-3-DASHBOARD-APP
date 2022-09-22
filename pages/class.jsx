@@ -1,4 +1,9 @@
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import {
+  PencilSquareIcon,
+  TrashIcon,
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+} from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
@@ -97,67 +102,76 @@ function Class() {
                 </tbody>
               </table>
             </div>
+            <div className="text-gray-500 focus-within:text-purple-600 flex justify-end mt-6 gap-4">
+              <button className="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-none rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                <ChevronDoubleLeftIcon className="w-5 h-5" />
+              </button>
+              <button className="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-none rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                <ChevronDoubleRightIcon className="w-5 h-5" />
+              </button>
+            </div>
 
             {/* modal */}
             <>
-            {showModal ? (
-        <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-auto my-6 mx-auto max-w-3xl">
-              {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-800 outline-none focus:outline-none">
-                {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-gray-700 rounded-t">
-                  <h3 className="text-3xl text-gray-400 font-semibold">Add New User</h3>
-                </div>
-                {/*body*/}
-                <div className="relative p-6 flex-auto">
-                  <form className="flex flex-col text-gray-400 gap-2">
-                    <label>Class Name</label>
-                    <input
-                      className="col  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray"
-                      // value={fullName}
-                      // onChange={(e) => setFullName(e.target.value)}
-                    />
-                    <label>Start Date</label>
-                    <input
-                      className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray"
-                      // value={email}
-                      // onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <label>End Date</label>
-                    <input
-                      className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray"
-                      // value={team}
-                      // onChange={(e) => setTeam(e.target.value)}
-                    />
-                  </form>
-                </div>
-                {/*footer*/}
-                <div className="flex items-center justify-end p-6 border-t border-solid border-gray-700 rounded-b">
-                  <button
-                    className="text-white background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none hover:outline-purple-500 rounded mr-3 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => setShowModal(false)}
-                  >
-                    Close
-                  </button>
-                  <button
-                    className="bg-purple-600 text-white active:bg-purple-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    // onClick={(e) => handleAddNewUser(e)}
-                  >
-                    Create User
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-        </>
-      ) : null}
-    </>
-          
+              {showModal ? (
+                <>
+                  <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                    <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                      {/*content*/}
+                      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-800 outline-none focus:outline-none">
+                        {/*header*/}
+                        <div className="flex items-start justify-between p-5 border-b border-solid border-gray-700 rounded-t">
+                          <h3 className="text-3xl text-gray-400 font-semibold">
+                            Add New User
+                          </h3>
+                        </div>
+                        {/*body*/}
+                        <div className="relative p-6 flex-auto">
+                          <form className="flex flex-col text-gray-400 gap-2">
+                            <label>Class Name</label>
+                            <input
+                              className="col  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray"
+                              // value={fullName}
+                              // onChange={(e) => setFullName(e.target.value)}
+                            />
+                            <label>Start Date</label>
+                            <input
+                              className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray"
+                              // value={email}
+                              // onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <label>End Date</label>
+                            <input
+                              className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-300 focus:shadow-outline-gray"
+                              // value={team}
+                              // onChange={(e) => setTeam(e.target.value)}
+                            />
+                          </form>
+                        </div>
+                        {/*footer*/}
+                        <div className="flex items-center justify-end p-6 border-t border-solid border-gray-700 rounded-b">
+                          <button
+                            className="text-white background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none hover:outline-purple-500 rounded mr-3 mb-1 ease-linear transition-all duration-150"
+                            type="button"
+                            onClick={() => setShowModal(false)}
+                          >
+                            Close
+                          </button>
+                          <button
+                            className="bg-purple-600 text-white active:bg-purple-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                            type="button"
+                            // onClick={(e) => handleAddNewUser(e)}
+                          >
+                            Create User
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                </>
+              ) : null}
+            </>
           </div>
         </div>
       </div>
