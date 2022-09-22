@@ -1,10 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import office from "../public/img/login-office-dark.jpeg";
 import axios from "axios";
-import { useRouter } from "next/router";
 import cookie from "js-cookie";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import office from "../public/img/login-office-dark.jpeg";
 
 export default function Home() {
   const [email, setEmail] = useState("");
