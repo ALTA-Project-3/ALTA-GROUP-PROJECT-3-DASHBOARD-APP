@@ -1,4 +1,11 @@
-import { PencilSquareIcon, TrashIcon, BellAlertIcon } from "@heroicons/react/24/outline";
+
+import {
+  PencilSquareIcon,
+  TrashIcon,
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+} from "@heroicons/react/24/outline";
+
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
@@ -168,8 +175,19 @@ function Class() {
                 </tbody>
               </table>
             </div>
+            <div className="text-gray-500 focus-within:text-purple-600 flex justify-end mt-6 gap-4">
+              <button className="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-none rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                <ChevronDoubleLeftIcon className="w-5 h-5" />
+              </button>
+              <button className="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-none rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                <ChevronDoubleRightIcon className="w-5 h-5" />
+              </button>
+            </div>
 
             {/* modal */}
+
+          
+
 
             {showModal ? (
               <>
@@ -229,6 +247,7 @@ function Class() {
                 <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
               </>
             ) : null}
+
           </div>
         </div>
       </div>
