@@ -16,7 +16,6 @@ const Mentee = () => {
         headers: { Authorization: "Bearer " + Cookies.get("token") },
       })
       .then((response) => {
-        console.log("ini response", response.data.data);
         setMentee(response.data.data);
       })
 
@@ -33,11 +32,13 @@ const Mentee = () => {
     <>
       <div className="flex w-screen bg-gray-900 h-max">
         <SideBar />
-        <div className="w-screen h-max">
+
+        <div className="flex flex-col flex-1 w-full">
+
           <Header />
           <main className="h-full pb-16 overflow-y-auto">
             <div className="container grid px-6 py-10 mx-auto">
-              <label className="block mt-4 text-sm mb-4">
+              <label className="block mt-4 text-sm mb-4 ">
                 <div className=" text-gray-500 focus-within:text-purple-600 flex justify-end">
                   <input
                     className="block w-48 py-2 mr-3 text-sm text-gray-300 border-gray-600 bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple focus:shadow-outline-gray form-input rounded-md placeholder:px-2"
@@ -55,13 +56,40 @@ const Mentee = () => {
                   </button>
                 </div>
 
-                <div className="text-gray-500 focus-within:text-purple-600 flex justify-end pt-3 pb-2">
-                  <button
+                
+                <div className="text-gray-500 focus-within:text-purple-600 flex justify-end gap-4 pt-5 pb-8">
+                <button
+
                     type="button"
                     className=" block px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-none rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                   >
                     Filter
                   </button>
+                  <div className="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400 basis-4/5">
+                  <select className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-500 focus:shadow-outline-gray">
+                    <option value="">Select Class</option>
+                    <option value="Frontend Engineer Batch 8">Frontend Engineer Batch 8</option>
+                    <option value="Backend Engineer Batch 11">Backend Engineer Batch 11</option>
+                    <option value="Frontend Engineer Batch 15">Frontend Engineer Batch 15</option>
+                  </select>
+                </div>
+                <div className="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400 basis-4/5">
+                  <select className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-500 focus:shadow-outline-gray">
+                    <option value="">Select Status</option>
+                    <option value="Active">Active</option>
+                    <option value="Non-Active">Non-Active</option>
+                   
+                  </select>
+                </div>
+                <div className="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400 basis-4/5">
+                  <select className=" w-full  px-4 py-2 rounded-lg text-sm border border-gray-600 bg-gray-700 focus:border-purple-400  focus:outline-none  text-gray-500 focus:shadow-outline-gray">
+                    <option value="">Select Category</option>
+                    <option value="Informatic">Informatic</option>
+                    <option value="Non-Informatic">Non-Informatic</option>
+                    
+                  </select>
+                </div>
+                
                   <button
                     type="button"
                     className=" block px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-none rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
