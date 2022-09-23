@@ -50,7 +50,7 @@ export default function Dashboard() {
       },
       {
         label: "Register",
-        data: [29, 27, 20, 42, 55, 45],
+        data: [29, 27, 48, 42, 65, 45],
         fill: true,
         backgroundColor: "rgba(83,87,212,0.2)",
         borderColor: "#5357D4",

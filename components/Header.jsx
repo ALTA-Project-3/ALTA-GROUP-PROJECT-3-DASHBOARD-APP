@@ -14,7 +14,7 @@ function Header() {
             <ul className="flex items-center flex-shrink-0 space-x-6">
               {/* <!-- Notifications menu --> */}
               <li className="relative">
-                <p>Hello, Users</p>
+                <p>Hello, Darkness My Old Friend</p>
               </li>
               {/* <!-- Profile menu --> */}
               <li className="relative">

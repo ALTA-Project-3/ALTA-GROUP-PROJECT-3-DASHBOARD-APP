@@ -1,11 +1,4 @@
-
-import {
-  PencilSquareIcon,
-  TrashIcon,
-  ChevronDoubleLeftIcon,
-  ChevronDoubleRightIcon,
-  BellAlertIcon
-} from "@heroicons/react/24/outline";
+import { PencilSquareIcon, TrashIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon, BellAlertIcon } from "@heroicons/react/24/outline";
 
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
@@ -187,9 +180,6 @@ function Class() {
 
             {/* modal */}
 
-          
-
-
             {showModal ? (
               <>
                 <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -248,7 +238,6 @@ function Class() {
                 <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
               </>
             ) : null}
-
           </div>
         </div>
       </div>

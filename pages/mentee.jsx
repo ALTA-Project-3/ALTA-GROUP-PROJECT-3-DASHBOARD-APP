@@ -1,19 +1,14 @@
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
-import {
-  PencilSquareIcon,
-  TrashIcon,
-  ChevronDoubleLeftIcon,
-  ChevronDoubleRightIcon,
-  DocumentMagnifyingGlassIcon,
-} from "@heroicons/react/24/solid";
+import { PencilSquareIcon, TrashIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon, DocumentMagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const Mentee = () => {
-
   const [mentee, setMentee] = useState([]);
+  const Router = useRouter();
 
   const getMentee = () => {
     axios
@@ -36,11 +31,11 @@ const Mentee = () => {
 
   return (
     <>
-      <div className="flex h-screen bg-gray-900 ">
+      <div className="flex w-screen bg-gray-900 h-max">
         <SideBar />
-        <div className="w-screen">
+        <div className="w-screen h-max">
           <Header />
-          <main className=" pb-16 overflow-y-auto">
+          <main className="h-full pb-16 overflow-y-auto">
             <div className="container grid px-6 py-10 mx-auto">
               <label className="block mt-4 text-sm mb-4">
                 <div className=" text-gray-500 focus-within:text-purple-600 flex justify-end">
@@ -54,13 +49,14 @@ const Mentee = () => {
                   <button
                     type="button"
                     className=" block px-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-none rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                    onClick={() => Router.push("/addMentee")}
                   >
                     Add New
                   </button>
                 </div>
-                
-                <div className="text-gray-500 focus-within:text-purple-600 flex justify-end pt-5 pb-8">
-                <button
+
+                <div className="text-gray-500 focus-within:text-purple-600 flex justify-end pt-3 pb-2">
+                  <button
                     type="button"
                     className=" block px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-none rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                   >
@@ -80,7 +76,7 @@ const Mentee = () => {
                     <thead>
                       <tr className="text-xs font-semibold tracking-wide text-left uppercase border-b border-gray-700 text-gray-400 bg-gray-800">
                         <th className="px-4 py-3 text-center">Name</th>
-                        
+
                         <th className="px-4 py-3 text-center">Class</th>
                         <th className="px-4 py-3 text-center">Status</th>
                         <th className="px-4 py-3 text-center">Category</th>
@@ -93,46 +89,42 @@ const Mentee = () => {
                       {mentee.map((user) => {
                         return (
                           <>
-                      <tr className="text-gray-400">
-                        <td className="px-4 py-3 text-center">
-                          <div className="flex items-center text-sm">
-                            <p className="font-semibold">{user.name}</p>
-                          </div>
-                        </td>
-                        
-                        <td className="px-4 py-3 text-center text-sm">{user.class}</td>
-                        <td className="px-4 py-3 text-center text-sm">
-                          {user.status}
-                        </td>
-                        <td className="px-4 py-3 text-center text-sm">{user.category}</td>
-                        <td className="px-4 py-3 text-center text-sm">{user.gender}</td>
-                        <td className="px-4 py-3 text-center text-sm ">
-                        <button
-                              className="flex items-center justify-center px-2 py-2 text-sm font-medium leading-5  rounded-lg text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                              aria-label="Detail"
-                            >
-                              <DocumentMagnifyingGlassIcon className="w-5 h-5" />
-                            </button>
-                        </td>
-                        <td className="px-4 py-3 text-center">
-                          <div className="flex items-center justify-center space-x-4 text-sm">
-                            <button
-                              className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5  rounded-lg text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                              aria-label="Edit"
-                            >
-                              <PencilSquareIcon className="w-5 h-5" />
-                            </button>
-                            <button
-                              className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5  rounded-lg text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                              aria-label="Delete"
-                              // onClick={() => handleDeleteUser(user.id)}
-                            >
-                              <TrashIcon className="w-5 h-5" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                      </>
+                            <tr className="text-gray-400">
+                              <td className="px-4 py-3 text-center">
+                                <div className="flex items-center text-sm">
+                                  <p className="font-semibold">{user.name}</p>
+                                </div>
+                              </td>
+
+                              <td className="px-4 py-3 text-center text-sm">{user.class}</td>
+                              <td className="px-4 py-3 text-center text-sm">{user.status}</td>
+                              <td className="px-4 py-3 text-center text-sm">{user.category}</td>
+                              <td className="px-4 py-3 text-center text-sm">{user.gender}</td>
+                              <td className="px-4 py-3 text-center text-sm ">
+                                <button
+                                  className="flex items-center justify-center px-2 py-2 text-sm font-medium leading-5  rounded-lg text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                  aria-label="Detail"
+                                  onClick={() => Router.push("/menteeLog")}
+                                >
+                                  <DocumentMagnifyingGlassIcon className="w-5 h-5" />
+                                </button>
+                              </td>
+                              <td className="px-4 py-3 text-center">
+                                <div className="flex items-center justify-center space-x-4 text-sm">
+                                  <button className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5  rounded-lg text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Edit">
+                                    <PencilSquareIcon className="w-5 h-5" />
+                                  </button>
+                                  <button
+                                    className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5  rounded-lg text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                    aria-label="Delete"
+                                    // onClick={() => handleDeleteUser(user.id)}
+                                  >
+                                    <TrashIcon className="w-5 h-5" />
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          </>
                         );
                       })}
                     </tbody>
