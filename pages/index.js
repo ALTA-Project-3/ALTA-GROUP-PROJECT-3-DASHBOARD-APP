@@ -64,7 +64,7 @@ export default function Home() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
-              {error ? <small className="text-red-600">{error}</small> : null}
+              {error ? <small className="text-red-500 font-semibold text-md uppercase mt-1 block text-center">{error}</small> : null}
               <button
                 type="submit"
                 className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
