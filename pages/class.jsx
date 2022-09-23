@@ -4,6 +4,7 @@ import {
   TrashIcon,
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
+  BellAlertIcon
 } from "@heroicons/react/24/outline";
 
 import { useEffect, useState } from "react";
