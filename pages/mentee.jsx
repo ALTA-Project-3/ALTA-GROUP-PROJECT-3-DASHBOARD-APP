@@ -7,15 +7,40 @@ import {
   ChevronDoubleRightIcon,
   DocumentMagnifyingGlassIcon,
 } from "@heroicons/react/24/solid";
+import axios from "axios";
+import Cookies from "js-cookie";
+import React, { useEffect, useState } from "react";
 
 const Mentee = () => {
+
+  const [mentee, setMentee] = useState([]);
+
+  const getMentee = () => {
+    axios
+      .get("https://tugas.website/user/mentee", {
+        headers: { Authorization: "Bearer " + Cookies.get("token") },
+      })
+      .then((response) => {
+        console.log("ini response", response.data.data);
+        setMentee(response.data.data);
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getMentee();
+  }, []);
+
   return (
     <>
       <div className="flex h-screen bg-gray-900 ">
         <SideBar />
         <div className="w-screen">
           <Header />
-          <main className="h-full pb-16 overflow-y-auto">
+          <main className=" pb-16 overflow-y-auto">
             <div className="container grid px-6 py-10 mx-auto">
               <label className="block mt-4 text-sm mb-4">
                 <div className=" text-gray-500 focus-within:text-purple-600 flex justify-end">
@@ -55,7 +80,7 @@ const Mentee = () => {
                     <thead>
                       <tr className="text-xs font-semibold tracking-wide text-left uppercase border-b border-gray-700 text-gray-400 bg-gray-800">
                         <th className="px-4 py-3 text-center">Name</th>
-                        <th className="px-4 py-3 text-center">Email</th>
+                        
                         <th className="px-4 py-3 text-center">Class</th>
                         <th className="px-4 py-3 text-center">Status</th>
                         <th className="px-4 py-3 text-center">Category</th>
@@ -65,24 +90,22 @@ const Mentee = () => {
                       </tr>
                     </thead>
                     <tbody className=" divide-y divide-gray-700 bg-gray-800">
-                      {/* {users.map((user) => {
+                      {mentee.map((user) => {
                         return (
-                          <> */}
+                          <>
                       <tr className="text-gray-400">
                         <td className="px-4 py-3 text-center">
                           <div className="flex items-center text-sm">
-                            <p className="font-semibold">Bagas Dhitya</p>
+                            <p className="font-semibold">{user.name}</p>
                           </div>
                         </td>
+                        
+                        <td className="px-4 py-3 text-center text-sm">{user.class}</td>
                         <td className="px-4 py-3 text-center text-sm">
-                          Bagasdhitya@gmail.com
+                          {user.status}
                         </td>
-                        <td className="px-4 py-3 text-center text-sm">FE-8</td>
-                        <td className="px-4 py-3 text-center text-sm">
-                          Graduated
-                        </td>
-                        <td className="px-4 py-3 text-center text-sm">IT</td>
-                        <td className="px-4 py-3 text-center text-sm">Male</td>
+                        <td className="px-4 py-3 text-center text-sm">{user.category}</td>
+                        <td className="px-4 py-3 text-center text-sm">{user.gender}</td>
                         <td className="px-4 py-3 text-center text-sm ">
                         <button
                               className="flex items-center justify-center px-2 py-2 text-sm font-medium leading-5  rounded-lg text-gray-400 focus:outline-none focus:shadow-outline-gray"
@@ -109,9 +132,9 @@ const Mentee = () => {
                           </div>
                         </td>
                       </tr>
-                      {/* </>
+                      </>
                         );
-                      })} */}
+                      })}
                     </tbody>
                   </table>
                 </div>
